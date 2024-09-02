@@ -2,7 +2,7 @@ package com.example.helloworldapi.controller;
 
 
 import com.example.helloworldapi.entity.Message;
-import com.example.helloworldapi.repository.MySQLRepository;
+import com.example.helloworldapi.mysql.MySQLRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

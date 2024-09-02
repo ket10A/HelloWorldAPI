@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "message")
+@Table(name = "message", schema = "MySchema")
 public class Message {
 
     @Id

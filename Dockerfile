@@ -1,4 +1,5 @@
 FROM openjdk
 LABEL authors="ketanaswani"
-COPY target/HelloWorldAPI-0.0.1-SNAPSHOT.jar /app.jar
+ARG JAR_FILE
+COPY target/${JAR_FILE} /app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
