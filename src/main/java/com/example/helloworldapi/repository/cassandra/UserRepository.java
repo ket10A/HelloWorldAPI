@@ -1,4 +1,4 @@
-package com.example.helloworldapi.repository;
+package com.example.helloworldapi.repository.cassandra;
 
 import com.example.helloworldapi.entity.User;
 import org.springframework.data.cassandra.repository.CassandraRepository;

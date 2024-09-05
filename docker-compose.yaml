@@ -1,19 +1,4 @@
 services:
-  springboot-app:
-    restart: always
-    ports:
-      - "8080:8080"
-    build:
-      context: .
-      args:
-        JAR_FILE: HelloWorldAPI-0.0.1-SNAPSHOT.jar
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/MySchema
-      - SPRING_DATASOURCE_USERNAME=admin
-      - SPRING_DATASOURCE_PASSWORD=password
-    depends_on:
-      - cassandra
-      - mysqldb
 
   cassandra:
     image: cassandra
@@ -33,3 +18,19 @@ services:
     volumes:
       - ./sql/000-create-databases.sql:/docker-entrypoint-initdb.d/1.sql
       - ./sql/001-create-tables.sql:/docker-entrypoint-initdb.d/2.sql
+
+  springboot-app:
+    restart: always
+    ports:
+      - "8080:8080"
+    build: .
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/MySchema
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_CASSANDRA_CONTACT-POINTS=cassandra
+      - SPRING_CASSANDRA_LOCAL-DATACENTER=datacenter1
+      - SPRING_CASSANDRA.KEYSPACE-NAME=helloworld
+    depends_on:
+      - cassandra
+      - mysqldb
