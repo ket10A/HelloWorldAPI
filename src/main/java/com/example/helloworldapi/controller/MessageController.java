@@ -46,4 +46,20 @@ public class MessageController {
         return
                 messageService.findMessageById(message.getId());
     }
+
+    @PutMapping(value = "/message/{id}")
+    public ResponseEntity<JsonResponse<Message>> updateMessageById(@PathVariable("id") Integer id,
+                                                                   @RequestBody Message message) {
+
+        log.info("update");
+        Message updatedMessage = messageService.updateMessageById(id, message);
+
+        if (updatedMessage == null) {
+            throw new HelloWorldException("Message update failed");
+        }
+
+        List<Message> messages = Collections.singletonList(message);
+        JsonResponse<Message> messageJsonResponse = new JsonResponse<>(messages, null);
+        return new ResponseEntity<>(messageJsonResponse, HttpStatus.OK);
+    }
 }

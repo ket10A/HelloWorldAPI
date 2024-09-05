@@ -16,8 +16,8 @@ services:
     ports:
         - "3336:3306"
     volumes:
-      - ./sql/000-create-databases.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./sql/001-create-tables.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./src/main/resources/data/sql/000-create-databases.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./src/main/resources/data/sql/001-create-tables.sql:/docker-entrypoint-initdb.d/2.sql
 
   springboot-app:
     restart: always

@@ -13,4 +13,6 @@ public interface MessageService {
     Message findMessageById(Integer id);
 
     void saveMessage(Message message);
+
+    Message updateMessageById(Integer id, Message message);
 }
